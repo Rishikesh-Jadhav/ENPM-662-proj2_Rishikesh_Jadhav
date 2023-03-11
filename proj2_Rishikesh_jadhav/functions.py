@@ -24,28 +24,9 @@ import Node
 # ---------------------------------------------------------------------------------
 
 def line(p1, p2, x, y, t):
-    # """
-    # Constructs a line passing through two points and calculates the distance of a given point from the line. 
-
-    # Parameters
-    # ----------
-    # p1 : Array
-    #     Coordinates of point 1.
-    # p2 : Array
-    #     Coordinates of point 2.
-    # x : double
-    #     x-coordinate of point of interest.
-    # y : double
-    #     y-coordinate of point of interest..
-    # t : double
-    #     offset from line for provided clearance.
-
-    # Returns
-    # -------
-    # d : double
-    #     Distance of point from line along with the sign indicating direction.
-
-    # """
+    """
+    Constructs a line passing through two points and calculates the distance of a given point from the line. 
+    """
     
     d = ((p2[1] - p1[1]) * (x - p1[0])) / ( p2[0] - p1[0]) + (p1[1] + t - y)
     
@@ -75,15 +56,6 @@ def create_map():
    
     for i in range(map.shape[1]):
         for j in range(map.shape[0]):
-            
-
-            # # Arrow Obstacle    
-            # if (line((36,65),(115,40),i,j,t) < 0 and line((36,65),(105,150),i,j,t) > 0 
-            #     and line((80,70),(105,150),i,j,t) < 0):
-            #     map[j,i] = 1
-            # if (line((80,70),(105,150),i,j,t) > 0 and line((36,65),(115,40),i,j,t) < 0 
-            #     and line((80,70),(115,40),i,j,t) > 0):
-            #     map[j,i] = 1
             
             # Hexagonal Obastacle
             if (i > (235.05-t) and i < (364.95+t) and line((235.05,87.5),(300,50),i,j,t) < 0 
@@ -123,22 +95,10 @@ def create_map():
 
 
 def isObstacle(point,map):
-    # """
-    # Checks whether the point collides with an obstacle.
+    """
+    Checks whether the point collides with an obstacle.
 
-    # Parameters
-    # ----------
-    # point : Array
-    #     Point coordinates.
-    # map : 2D Array
-    #     Constructed map.
-
-    # Returns
-    # -------
-    # flag : bool
-    #     True if point coincides with an obstacle, false otherwise.
-
-    # """
+    """
     
     flag = False
     
@@ -149,15 +109,10 @@ def isObstacle(point,map):
     
 
 def getStartNode(map):
-    # """
-    # Gets the start node from the user.
+    """
+    Gets the start node from the user.
 
-    # Returns
-    # -------
-    # start_node : Array
-    #     Coordinates of start node.
-
-    # """
+    """
     
     flag = False
     while not flag:
@@ -178,15 +133,15 @@ def getStartNode(map):
 
 
 def getGoalNode(map):
-    # """
-    # Gets the goal node from the user.
+    """
+    Gets the goal node from the user.
 
-    # Returns
-    # -------
-    # goal_node : Array
-    #     Coordinates of goal node.
+    Returns
+    -------
+    goal_node : Array
+        Coordinates of goal node.
 
-    # """
+    """
     
     flag = False
     while not flag:
@@ -208,22 +163,10 @@ def getGoalNode(map):
 
 
 def explore(node,map):
-    # """
-    # Explores the neighbors of the current node and performs move action.
+    """
+    Explores the neighbors of the current node and performs move action.
 
-    # Parameters
-    # ----------
-    # node : Node
-    #     Current node for which neighbors need to be explored.
-    # map : 2D Array
-    #     Constructed map.
-
-    # Returns
-    # -------
-    # valid_paths : list
-    #     Action performed node, cost of movement.
-
-    # """
+    """
     x = node.x
     y = node.y
 
@@ -238,25 +181,25 @@ def explore(node,map):
     return valid_paths
 
 
-def Dijkstra(start_node, goal_node, map):
-    # """
-    # Performs Djikstra's search.
+def Dijkstra_Algorithm(start_node, goal_node, map):
+    """
+    Performs Djikstra's search.
 
-    # Parameters
-    # ----------
-    # start_node : Array
-    #     Initial node.
-    # goal_node : Array
-    #     Goal node.
-    # map : 2D Array
-    #     Constructed map.
+    Parameters
+    ----------
+    start_node : Array
+        Initial node.
+    goal_node : Array
+        Goal node.
+    map : 2D Array
+        Constructed map.
 
-    # Returns
-    # -------
-    # node_objects : dict
-    #     Dictionary holding information of nodes, instances of class Node.
+    Returns
+    -------
+    node_objects : dict
+        Dictionary holding information of nodes, instances of class Node.
 
-    # """
+    """
 
     print("\n Performing Djikstra search...\n")
 
@@ -306,22 +249,22 @@ def Dijkstra(start_node, goal_node, map):
 
 
 def GeneratePath(node_objects, goal_node):
-    # """
-    # Backtracks and finds the path from initial to goal node.
+    """
+    Backtracks and finds the path from initial to goal node.
 
-    # Parameters
-    # ----------
-    # node_objects : dict
-    #     All the explored nodes.
-    # goal_node : Array
-    #     User defined goal node.
+    Parameters
+    ----------
+    node_objects : dict
+        All the explored nodes.
+    goal_node : Array
+        User defined goal node.
 
-    # Returns
-    # -------
-    # node_objects : dict
-    #     All the explored nodes.
-    # path : list
-    #     Path from initial to goal node.
+    Returns
+    -------
+    node_objects : dict
+        All the explored nodes.
+    path : list
+        Path from initial to goal node.
 
     # """
     rev_path = []                                                                    # Empty reversed path list 
@@ -338,23 +281,23 @@ def GeneratePath(node_objects, goal_node):
 
 
 def Animate(node_objects, path, map):
-    # """
-    # Animates the search scenario and exports the animation.
+    """
+    Animates the search scenario and exports the animation.
 
-    # Parameters
-    # ----------
-    # node_objects : dict
-    #     All the explored nodes.
-    # path : list
-    #     Path from initial to goal node.
-    # map : 2D Array
-    #     Contructed map.
+    Parameters
+    ----------
+    node_objects : dict
+        All the explored nodes.
+    path : list
+        Path from initial to goal node.
+    map : 2D Array
+        Contructed map.
 
-    # Returns
-    # -------
-    # None.
+    Returns
+    -------
+    None.
 
-    # """
+    """
     
     print(" Creating animation video...")
     
@@ -373,11 +316,11 @@ def Animate(node_objects, path, map):
     
     
     for i in range(len(nodes)):                                                      # Add visited nodes to video frame
-        img[nodes[i].pos[1], nodes[i].pos[0], :] = np.array([0,255,0])
+        img[nodes[i].pos[1], nodes[i].pos[0], :] = np.array([0,255,10])
         video.write(img)
         
     for i in range(len(path) - 1):                                                   # Add generated path to video frame 
-        img[path[i][1], path[i][0], :] = np.array([255,0,0])
+        img[path[i][1], path[i][0], :] = np.array([255,10,0])
         video.write(img)
     
     video.release()
@@ -386,28 +329,25 @@ def Animate(node_objects, path, map):
     
 def initialize():
     """
-    Provides solver description and running instructions to the user.
+    Displays information to the user about the solver and how to run it.
 
     Returns
     -------
     None.
 
     """
-    
+
     print("""
-           
     --------------------------------------------------------------------------------------------------------------------
-         
-    THIS PROGRAM USES DJIKSTRA'S ALGORITHM FOR SEARCHING A PATH FROM USER DEFINED START AND GOAL LOCATION IN A GIVEN MAP.
-    
+    This program utilizes Dijkstra's algorithm to search for a path between a user-defined start and goal location on a given map.
     --------------------------------------------------------------------------------------------------------------------
     
-    -> The user needs to provide the coordinates of the start and goal node according to the format given below:
+    -> The user must provide the coordinates of the start and goal node in the following format:
     
-        For example: For a node with x and y-coordinates as 100 and 200, 
+        For example: For a node with x and y-coordinates of 100 and 200, 
             
         Input: 100,200
     
-    (Note: Only comma seperated values are allowed)
+    (Note: Only comma-separated values are permitted)
     --------------------------------------------------------------------------------------------------------------------
     """)
