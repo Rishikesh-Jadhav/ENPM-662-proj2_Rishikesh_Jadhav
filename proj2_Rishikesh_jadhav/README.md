@@ -15,4 +15,13 @@ The functions.py file contains all the function definitions.
 ```
 $ python3 dijkstra_Rishikesh_Jadhav.py
 ```
+or run the file python3 dijkstra_Rishikesh_Jadhav.py from any other IDE and follow the instructions on the terminal.
 
+The generated video will be saved in the same folder containing all the above files.
+
+You will need the fllowing libraries
+cv2
+numpy
+queue
+
+If you select values which are far from each other it will take time to get the video animation ready.
